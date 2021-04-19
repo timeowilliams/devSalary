@@ -1,0 +1,333 @@
+
+{ 
+    "description": "Software Developer Salaries by U.S State: Footnotes: SOC code: Standard Occupational Classification code -- see http://www.bls.gov/soc/home.html Data extracted on April 19, 2021",
+    "states" : [
+        {
+            "id": 1,
+            "name":"Alabama",
+            "wage":98530
+        },
+
+        {
+            "id": 2,
+            "name": "Alaska",
+            "wage":97880
+        },
+
+        {
+            "id": 3,
+            "name": "Arizona",
+            "wage" :101300
+        },
+
+        {
+            "id":4,
+            "name": "Arkansas",
+            "wage":84750
+        },
+
+        {
+            "id": 5,
+            "name":"California",
+            "wage" :135930 
+        },
+
+        {
+            "id": 6, 
+            "name": "Colorado",
+            "wage": 110900
+        },
+
+        {
+            "id": 7,
+            "name": "Connecticut",
+            "wage": 102430
+        },
+        {
+            "id": 8, 
+            "name": "Delaware",
+            "wage": 112220
+        },
+
+        {
+            "id": 9,
+            "name": "District of Columbia",
+            "wage": 119960
+        },
+
+        {
+            "id": 10,
+            "name": "Florida",
+            "wage": 96210
+        },
+
+        {
+            "id": 11,
+            "name": "Georgia",
+            "wage" :104730
+        },
+
+        {
+            "id": 12,
+            "name":"Hawaii",
+            "wage": 97180
+        },
+        {
+            "id": 13,
+            "name": "Idaho",
+            "wage": 91750
+        },
+
+        {
+            "id": 14,
+            "name": "Illinois",
+            "wage": 105700
+        },
+
+        {
+            "id": 15,
+            "name": "Indiana",
+            "wage": 89900
+        },
+
+        {
+            "id": 16,
+            "name": "Iowa",
+            "wage": 96830
+        },
+
+
+        {
+            "id": 17,
+            "name": "Kansas",
+            "wage": 91770
+        },
+        {
+            "id": 18,
+            "name": "Kentucky",
+            "wage": 88090
+        },
+
+
+        {
+            "id": 19,
+            "name": "Louisiana",
+            "wage": 88370 
+        },
+
+        {
+            "id": 20,
+            "name":"Maine",
+            "wage": 91470
+        },
+
+
+        {
+            "id": 21,
+            "name":"Maryland",
+            "wage":113140
+        },
+
+        {
+            "id": 22,
+            "name": "Massachusetts",
+            "wage": 117630
+        },
+
+
+        {
+            "id": 23,
+            "name": "Michigan",
+            "wage": 89970
+        },
+
+
+        {
+            "id": 24,
+            "name": "Minnesota",
+            "wage": 105990
+        },
+
+        {
+            "id": 25,
+            "name": "Mississippi",
+            "wage": 82290
+        },
+
+        {
+            "id": 26,
+            "name": "Missouri",
+            "wage": 94970 
+        },
+
+        {
+            "id": 27,
+            "name": "Montana",
+            "wage": 85940
+        },
+
+
+        {
+            "id":28,
+            "name": "Nebraska",
+            "wage":  94160
+        },
+
+
+        {
+            "id": 29,
+            "name": "Nevada",
+            "wage": 93180
+        },
+
+
+        {
+            "id": 30,
+            "name": "New Hampshire",
+            "wage": 109840
+            
+        },
+
+
+        {
+            "id": 31,
+            "name": "New Jersey",
+            "wage": 108750
+        },
+
+
+        {
+            "id": 32,
+            "name":"New Mexico",
+            "wage": 92000
+        },
+
+
+        {
+            "id": 33,
+            "name": "New York",
+            "wage": 117910
+        },
+
+
+        {
+            "id": 34,
+            "name": "North Carolina",
+            "wage": 103250
+        },
+
+
+        {
+            "id": 35,
+            "name": "North Dakoka",
+            "wage": 85570
+
+        },
+
+        {
+            "id": 36,
+            "name": "Ohio",
+            "wage": 95870
+        },
+
+
+        {
+            "id": 37,
+            "name": "Oklahoma",
+            "wage": 87660
+        },
+
+        {
+            "id": 38,
+            "name": "Oregon",
+            "wage": 104910
+        },
+
+
+        {
+            "id": 39,
+            "name": "Pennsylvania",
+            "wage": 97840
+        },
+
+
+        {
+            "id": 40,
+            "name": "Puerto Rico",
+            "wage": 48700
+        },
+
+        {
+            "id": 41,
+            "name": "Rhode Island",
+            "wage": 100250
+        },
+
+        {
+            "id": 42,
+            "name": "South Carolina",
+            "wage": 84520
+        },
+
+
+        {
+            "id":43,
+            "name": "South Dakota",
+            "wage": 75260
+        },
+
+        {
+            "id":44,
+            "name": "Tennessee",
+            "wage": 89200
+        },
+
+        {
+            "id":45,
+            "name": "Texas",
+            "wage": 108150
+        },
+
+        {
+            "id": 46,
+            "name": "Utah",
+            "wage": 100330 
+        },
+        {
+            "id": 47,
+            "name": "Vermont",
+            "wage": 97440
+        },
+        {
+            "id": 48,
+            "name": "Virginia",
+            "wage": 112730
+        },
+
+        {
+            "id": 49,
+            "name": "Washington",
+            "wage": 139450
+        },
+
+        {
+            "id": 50,
+            "name": "West Virginia",
+            "wage": 76140
+        },
+
+        {
+            "id": 51,
+            "name": "Wisconsin",
+            "wage": 91810
+        },
+
+        {
+            "id": 52,
+            "name": "Wyoming",
+            "wage": 69980
+            
+        }
+ ]
+}
+
