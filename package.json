@@ -8,6 +8,7 @@
     "dev": "NODE_ENV=development webpack serve --open & nodemon server/server.js",
     "start": "nodemon server/server.js",
     "test": "NODE_ENV=testing jest --watchAll",
+    "test-reg": "NODE_ENV=testing jest",
     "test-vs": "jest --verbose --silent",
     "windows": "concurrently \"cross-env NODE_ENV=development nodemon server/server.js\" \"NODE_ENV=development webpack serve --open\""
   },
@@ -38,7 +39,6 @@
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.0",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-17-updated": "^1.0.2",
     "enzyme-to-json": "^3.6.2",
     "jest": "^26.6.3",
     "nodemon": "^2.0.7",
