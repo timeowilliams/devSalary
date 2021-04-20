@@ -4,8 +4,6 @@ const app = express();
 
 app.use(express.json());
 
-console.log(process.env);
-
 app.use('/build', express.static(path.resolve(__dirname, '../build')));
 
 app.get('/', (req, res) => {
