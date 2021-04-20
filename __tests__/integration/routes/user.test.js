@@ -1,7 +1,5 @@
 const app = require('../../../server/server');
 const supertest = require('supertest');
-//const { MultiStats } = require('webpack');
-//const request = require('supertest');
 const request = supertest(app);
 
 const server = 'http://localhost:3000';
@@ -29,8 +27,6 @@ describe('User Route tests', () => {
       });
     });
   });
-
-  //  postgres://otvgvawi:eqUNpnOJv5OEeE4jDS99cvkQNWRq2GhU@queenie.db.elephantsql.com:5432/otvgvawi
 
   describe('/user', () => {
     describe('POST', () => {
