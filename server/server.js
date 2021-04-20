@@ -2,6 +2,10 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const userRouter = require('./routes/user');
+const statesRouter = require('./routes/states');
+const applicationsRouter = require('./routes/applications');
+
+app.disable('x-powered-by');
 
 app.use(express.json());
 
@@ -16,15 +20,9 @@ app.get('/', (req, res) => {
 // users/authenticate - should be first to set tokens when necessary
 app.use('/user', userRouter);
 // states
+app.use('/states', statesRouter);
 // applications
-
-/*
-
-for states
-for updates
-for users
-
-*/
+app.use('/applications', applicationsRouter);
 
 // route to server
 // app.use()
