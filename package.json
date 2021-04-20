@@ -6,7 +6,7 @@
   "scripts": {
     "build": "NODE_ENV=production webpack",
     "dev": "NODE_ENV=development webpack serve --open & nodemon server/server.js",
-    "start": "node server/server.js",
+    "start": "nodemon server/server.js",
     "test": "jest",
     "test-vs": "jest --verbose --silent",
     "windows": "concurrently \"cross-env NODE_ENV=development nodemon server/server.js\" \"NODE_ENV=development webpack serve --open\""
@@ -24,7 +24,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "pg": "^8.6.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
