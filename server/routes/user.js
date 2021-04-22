@@ -2,19 +2,14 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 
+//middleware chain to get all users
 router.get('/', userController.getUsers, (req, res) => {
   return res.status(200).send(res.locals.allUsers);
 });
 
-router.post('/', userController.postUser, (req, res) => {
-  //console.log(res.body);
-  return res.status(200).json({ user: res.locals.user });
-  //return res.status(200).json('ok');
+//middleware chain to delete a user from the database
+router.delete('/:id', userController.deleteUser, (req, res) => {
+  return res.status(200).json(res.locals.deletedMessage);
 });
-// login
-// app.post('/login)
-
-// new user
-// app.post('/')
 
 module.exports = router;
