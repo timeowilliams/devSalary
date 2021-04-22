@@ -6,7 +6,6 @@ import ReactDOM from 'react-dom';
 import statesDefaults from '../data/states-default';
 import statesData from '../data/stateData';
 import objectAssign from 'object-assign';
-import DataTableBox from '../components/DataTableBox';
 
 export default class DataMap extends React.Component {
   constructor(props){
@@ -31,15 +30,17 @@ export default class DataMap extends React.Component {
   //Will return a 
   redducedData(){
     const newData = this.props.regionData.reduce((object, data) => {
+      //if(statesDefaults.data.state_code){
       object[data.state_code] = { value: Math.floor(data.cost_of_living_index), fillColor: this.linearPalleteScale(Math.floor(data.cost_of_living_index)), salary: data.wage, application: data.application ? data.application: 0 }; // setting model color and data
       return object;
+    // }
     }, {});
-
+    
     return objectAssign({}, statesData, newData); // updating states
   }
   renderMap(){
     const amIuser = this.isLoggedIn;
-     const test = new Datamap({
+    const test = new Datamap({
       element: ReactDOM.findDOMNode(this),
       scope: 'usa',
       data: this.redducedData(), // population the fill color range
@@ -47,10 +48,6 @@ export default class DataMap extends React.Component {
         borderWidth: 0.5,
         highlightFillColor: '#FFCC80',
         popupTemplate: function(geography, data) {
-
-        
-
-
           if (data && amIuser) { // If user is not logged in
             return `<div class="hoverinfo"><strong> ${geography.properties.name} <br> Median Salary: $${data.salary} <br> Cost of Living Index: ${data.value} </strong></div>`;
           }
@@ -65,35 +62,29 @@ export default class DataMap extends React.Component {
     return test;
   }
   onClick(e){
-      console.log(e.target.innerHTML);
-      let state = '';
-      //Capture the state name from the e.target.innerHTML, typically the string from beginning to <
-    for(let i = 0; i < e.target.innerHTML.length; i++){
-        if(e.target.innerHTML[i] === '<'){
-            break;
-        }
-        else{
-            state += e.target.innerHTML[i]
-        }
-    }  
-    state = state.replaceAll(/\s/g,''); 
-    this.state.currState = state;
+    e.preventDefault();
+    console.log('Element data', Object.values(e.target));
+    console.log(e.target["__data__"].properties.name);
+    let state = e.target["__data__"].properties.name;
+    
+    console.log('I clicked on this state:', state);
+    this.setState({currState: state})
     this.setState({timeo: true})
   }
-
+  
   currentScreenWidth(){
     return window.innerWidth ||
-        document.documentElement.clientWidth ||
-        document.body.clientWidth;
+    document.documentElement.clientWidth ||
+    document.body.clientWidth;
   }
   componentDidMount(){
     // rescale the size of map here
     const mapContainer = d3.select('#datamap-container');
     const initialScreenWidth = this.currentScreenWidth();
     const containerWidth = (initialScreenWidth < 600) ?
-      { width: initialScreenWidth + 'px',  height: (initialScreenWidth * 0.5625) + 'px' } :
-      { width: `${600*2.5}px`, height: `${350*2.5}px` } // filling the whole page
-
+    { width: initialScreenWidth + 'px',  height: (initialScreenWidth * 0.5625) + 'px' } :
+    { width: `${600*2.5}px`, height: `${350*2.5}px` } // filling the whole page
+    
     mapContainer.style(containerWidth);
     this.datamap = this.renderMap();
     window.addEventListener('resize', () => { // resize the map
@@ -118,56 +109,81 @@ export default class DataMap extends React.Component {
     });
   }
   componentDidUpdate(){
-    console.log('from line 128: component Did update.')
-    console.log('Testing component update. This.props is', this.props);
+    console.log('from 110: component Did update.')
+    // console.log('Testing component update. This.props is', this.props);
     console.log('The curr state is', this.state);
+    var map = d3.select('.containerclass').append("svg").attr('class','map');
+    map.style('width',`${600}px`).style('height',`${600}px`);
+    // this.datamap.resize( `${600}px`,`${350}px`)
     // this.datamap.updateChoropleth(this.redducedData());
   }
   componentWillUnmount(){
     d3.select('svg').remove();
   }
+  
+  
+  
+  
   render() {
-      //Render Component that will show additional state data
+    //Render Component that will show additional state data
     let moreStateInfo;
     if (this.state.timeo) {
-        let stateObj;
-        //Iterate through this.props.regionData and find the object where the state is equal to currState
-        for(let i = 0; i < this.state.regionData.length; i++){
-            if(this.state.currState === this.state.regionData[i].name){
-                console.log(this.state.regionData[i])
-                stateObj = this.state.regionData[i];
-                break;
-            }
+      let stateObj;
+      console.log('Inside here', this.state)
+      //Iterate through this.props.regionData and find the object where the state is equal to currState
+      for(let i = 0; i < this.state.regionData.length; i++){
+        if(this.state.currState === this.state.regionData[i].name){
+          console.log(this.state.regionData[i])
+          stateObj = this.state.regionData[i];
+          break;
         }
-        //Render component that will show all application info
-    let applicationInfo;
-
-
-
-
-        if(stateObj){
-            moreStateInfo = `
-      <div><strong> ${stateObj.name} 
-      <br> Median Salary: $${stateObj.wage}
-      <br> Cost of Living Index: ${stateObj.cost_of_living_index}
-      <br> Median rent for studio: $${stateObj.median_rent}
-      <br> Gallon of gas: $${stateObj.gas}
-      <br> Gallon of milk: $${stateObj.milk}
-      </strong>
-      </div>`;
-      console.log('More State Info', moreStateInfo);
-        }
+      }
+      //Render component that will show all application info
+      let applicationInfo;
+      
+      
+      if(stateObj){
+        
+        // div element 
+        // p element 
+        
+        moreStateInfo = 
+        React.createElement('div', stateObj,
+        React.createElement('ul',{},
+        [
+          React.createElement('li', {},`State initials: ${stateObj.name}`),  
+          React.createElement('li', {},`Median Salary: $${stateObj.wage}`),
+          React.createElement('li', {},`Cost of Living Index: ${stateObj.cost_of_living_index}`),
+          React.createElement('li', {},`Median rent for studio: $${stateObj.median_rent}`),  
+          React.createElement('li', {},`Gallon of gas: $${stateObj.gas | 2.89}`),  
+          React.createElement('li', {},`Gallon of milk: $${stateObj.milk | 3.59}`), 
+          
+        ]
+        )
+        );
+        console.log('More State Info', moreStateInfo);
+        const ul = moreStateInfo.props.children
+        const list = ul.props.children
+        console.log('ul: ',ul);
+        console.log('list: ', list)
+        console.log('list: ', list[0].key)
+        // list.forEach((li, key) => {
+        //   li.key = key;
+        // });
+      }
     }
     return (
-        <div>
-      <div id="datamap-container"></div>
-      {moreStateInfo}
-      {applicationInfo}
+      
+      <div id="datamap-container">  
+      {moreStateInfo}  
       </div>
-    );
+      
+      );
+      
+    }
   }
-}
-
-DataMap.propTypes = {
+  
+  DataMap.propTypes = {
     regionData: React.PropTypes.array.isRequired
-};
+  };
+  

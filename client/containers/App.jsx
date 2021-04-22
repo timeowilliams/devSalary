@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { editRow, deleteRow, addRow, toggleDirection } from '../actions';
-
+import LoginComponent from '../components/LoginComponent'
 import DataMap from '../components/DataMap';
 // import DataTableBox from '../components/DataTableBox';
 
@@ -29,12 +29,13 @@ class App extends React.Component {
 
     return (
       <div>
-      <h3>Democratizing software developer salary info so you don't have too</h3>
+        <center> <h3>Democratizing software developer salary info so you don't have too</h3></center>
       <LoginComponent/>
       <div className='datamap-outer-conainer'>
       <DataMap 
       regionData={this.props.regionData} 
       />
+      <div className = 'data'></div>
       </div>
       </div>
       );
