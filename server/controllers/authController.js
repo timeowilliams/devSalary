@@ -5,6 +5,7 @@ const saltRounds = 10;
 const jwtSecret = 'tyrones-secret';
 const authController = {};
 
+//function to sign up a new user to databse and encrypt password
 authController.signup = (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -28,6 +29,7 @@ authController.signup = (req, res, next) => {
   });
 };
 
+//function to login a new user and verify password is correct
 authController.login = (req, res, next) => {
   const { email, password } = req.body;
 
@@ -60,6 +62,8 @@ authController.login = (req, res, next) => {
       return next(error);
     });
 };
+
+//function to add JWT and save in client cookies
 authController.addJWT = (req, res, next) => {
   const { email } = req.body;
   const { id } = res.locals.user;
@@ -73,6 +77,7 @@ authController.addJWT = (req, res, next) => {
   });
 };
 
+//function to verify JWT token in cookie
 authController.verifyUser = (req, res, next) => {
   const token = req.cookies.jwt;
   console.log('IN VERIFY', token);
@@ -90,6 +95,7 @@ authController.verifyUser = (req, res, next) => {
   });
 };
 
+//function to logout user and erase JWT
 authController.logout = (req, res, next) => {
   res.cookie('jwt', null);
   return next();
