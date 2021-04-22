@@ -5,9 +5,9 @@ const userController = {};
 //Gets all users from the users table and returns to client
 userController.getUsers = (req, res, next) => {
   const query = `SELECT * FROM users ORDER BY id`;
-  console.log('GETTING');
   db.query(query)
     .then((data) => {
+      console.log(data.rows);
       res.locals.allUsers = data.rows;
       return next();
     })

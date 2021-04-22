@@ -11,7 +11,7 @@ describe('User Route tests', () => {
   //   server.close();
   // });
   const newUser = {
-    email: `onchirim61@msu.edu`,
+    email: `onchirim72@msu.edu`,
     password: 'password',
   };
   //validates the GET method in the user route
@@ -75,11 +75,11 @@ describe('User Route tests', () => {
   describe('/user', () => {
     const id = 20;
     describe('DELETE /:id', () => {
-      xit('responds with a 200 status when user is deleted, and returns an object with an id property equal to the deleted entry', async () => {
+      it('responds with a 200 status when user is deleted, and returns an object with an id property equal to the deleted entry', async () => {
         const response = await request(app).delete(`/user/${id}`);
         expect(response.statusCode).toBe(200);
       });
-      xit('returns an object with an id property equal to the id of the deleted entry', async () => {
+      it('returns an object with an id property equal to the id of the deleted entry', async () => {
         const response = await request(app).del(`/user/${id}`);
         expect(response.body.user.id).toBe(id);
       });
@@ -88,7 +88,7 @@ describe('User Route tests', () => {
 
   describe('/user', () => {
     describe('PUT', () => {
-      xit('responds with a 200 status and application json content type', async () => {
+      it('responds with a 200 status and application json content type', async () => {
         await request
           .put('/user')
           .send(newUser)

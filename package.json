@@ -6,7 +6,7 @@
   "scripts": {
     "build": "NODE_ENV=production webpack",
     "dev": "NODE_ENV=development webpack serve --open & nodemon server/server.js",
-    "start": "NODE_ENV=production nodemon server/server.js",
+    "start": "nodemon server/server.js",
     "test": "NODE_ENV=testing jest --watchAll --verbose",
     "test-reg": "NODE_ENV=testing jest",
     "test-vs": "jest --verbose --silent",
