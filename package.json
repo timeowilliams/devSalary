@@ -6,8 +6,8 @@
   "scripts": {
     "build": "NODE_ENV=production webpack",
     "dev": "NODE_ENV=development webpack serve --open & nodemon server/server.js",
-    "start": "nodemon server/server.js",
-    "test": "NODE_ENV=testing jest --watchAll",
+    "start": "NODE_ENV=production nodemon server/server.js",
+    "test": "NODE_ENV=testing jest --watchAll --verbose",
     "test-reg": "NODE_ENV=testing jest",
     "test-vs": "jest --verbose --silent",
     "windows": "concurrently \"cross-env NODE_ENV=development nodemon server/server.js\" \"NODE_ENV=development webpack serve --open\""
@@ -25,8 +25,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.6.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"

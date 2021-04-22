@@ -1,3 +1,87 @@
-const authController = {};
+// const jwt = require('jsonwebtoken');
+// const bcrypt = require('bcrypt');
+// const db = require('../model/dbModel');
+// const saltRounds = 10;
+// const jwtSecret = 'tyrones-secret';
+// const authController = {};
 
-module.exports = authController;
+// authController.signup = (req, res, next) => {
+//   // const { email, password } = req.body;
+//   // console.log('IN SIGNUP CONTROLLER', email, password);
+//   // if (!email || !password) {
+//   //   return next({
+//   //     log: 'Error in authController.signup',
+//   //     status: 401,
+//   //     message: 'Missing email or password in request body',
+//   //   });
+//   // }
+
+//   // bcrypt.hash(password, saltRounds).then((hash) => {
+//   //   const query = `
+//   //       INSERT INTO users(email, password)
+//   //       VALUES ($1, $2)
+//   //       RETURNING email, id`;
+
+//   //   db.query(query, [email, hash]).then((data) => {
+//   //     res.locals.user = data.rows[0];
+//   //     return next();
+//   //   });
+//   // });
+//   const { email, password } = req.body;
+//   if (!email || !password) {
+//     return next({
+//       log: 'error in userController.postUsers: Missing email or password',
+//       status: 300,
+//     });
+//   }
+
+//   const query = `INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *`;
+
+//   db.query(query, [email, password])
+//     .then((data) => {
+//       res.locals.user = data.rows[0];
+//       return next();
+//     })
+//     .catch((err) => {
+//       console.log('IN CATCH');
+//       return next({
+//         log: 'error in userController.postUsers' + err,
+//         status: 300,
+//       });
+//     });
+// };
+
+// authController.login = (req, res, next) => {
+//   const { email, password } = req.body;
+
+//   const query = `
+//     SELECT email, password, id FROM users
+//     WHERE email = $1`;
+
+//   db.query(query, [email])
+//     .then((data) => {
+//       // Compare plaintext pass to hash from DB
+//       bcrypt.compare(password, data.rows[0].password).then((result) => {
+//         if (result) {
+//           const user = {
+//             username: data.rows[0].username,
+//             id: data.rows[0].id,
+//           };
+
+//           res.locals.user = user;
+//           return next();
+//         }
+
+//         return next({
+//           log: 'error authController.login',
+//           status: 401,
+//           message: 'invalid email/password combination',
+//         });
+//       });
+//     })
+//     .catch((error) => {
+//       return next(error);
+//     });
+// };
+
+// module.exports = authController;

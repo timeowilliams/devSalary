@@ -10,20 +10,13 @@ router.post('/', userController.postUser, (req, res) => {
   return res.status(200).json({ user: res.locals.user });
 });
 
-router.delete('/:id', (req, res) => {
-  console.log(req.params);
-  return res.status(200);
+router.delete('/:id', userController.deleteUser, (req, res) => {
+  return res.status(200).json(res.locals.deletedMessage);
 });
 
 router.put('/', (req, res) => {
   console.log(req.body);
   return res.status(200);
 });
-
-// login
-// app.post('/login)
-
-// new user
-// app.post('/')
 
 module.exports = router;
