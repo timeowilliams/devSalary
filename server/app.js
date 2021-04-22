@@ -9,13 +9,13 @@ app.disable('x-powered-by');
 
 app.use(express.json());
 
+app.use(express.urlencoded({ extended: true }));
+
 app.use('/build', express.static(path.resolve(__dirname, '../build')));
 
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
 });
-
-// cache
 
 // users/authenticate - should be first to set tokens when necessary
 app.use('/user', userRouter);
@@ -30,11 +30,10 @@ app.use((err, req, res, next) => {
     log: 'Express error handler caught unknown middleware error',
     status: 500,
     message: { err: 'An error occurred' },
+    timestamp: Date.now(),
   };
   const errorObj = Object.assign({}, defaultErr, err);
   return res.status(errorObj.status).json(errorObj.message);
 });
-
-// 404 handler
 
 module.exports = app;
