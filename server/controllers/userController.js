@@ -7,7 +7,6 @@ userController.getUsers = (req, res, next) => {
   const query = `SELECT * FROM users ORDER BY id`;
   db.query(query)
     .then((data) => {
-      console.log(data.rows);
       res.locals.allUsers = data.rows;
       return next();
     })
@@ -19,30 +18,30 @@ userController.getUsers = (req, res, next) => {
     });
 };
 
-//Adds a new user to the users table - CONSIDER REMOVING THIS FUNCTION
-userController.postUser = (req, res, next) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
-    return next({
-      log: 'error in userController.postUsers: Missing email or password',
-      status: 300,
-    });
-  }
+// //Adds a new user to the users table - CONSIDER REMOVING THIS FUNCTION
+// userController.postUser = (req, res, next) => {
+//   const { email, password } = req.body;
+//   if (!email || !password) {
+//     return next({
+//       log: 'error in userController.postUsers: Missing email or password',
+//       status: 300,
+//     });
+//   }
 
-  const query = `INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *`;
+//   const query = `INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *`;
 
-  db.query(query, [email, password])
-    .then((data) => {
-      res.locals.user = data.rows[0];
-      return next();
-    })
-    .catch((err) => {
-      return next({
-        log: 'error in userController.postUsers' + err,
-        status: 300,
-      });
-    });
-};
+//   db.query(query, [email, password])
+//     .then((data) => {
+//       res.locals.user = data.rows[0];
+//       return next();
+//     })
+//     .catch((err) => {
+//       return next({
+//         log: 'error in userController.postUsers' + err,
+//         status: 300,
+//       });
+//     });
+// };
 
 //Deletes a user from the users table
 userController.deleteUser = (req, res, next) => {
@@ -71,24 +70,24 @@ userController.deleteUser = (req, res, next) => {
 };
 
 //updates a user in the users table - CONSIDER REMOVING THIS
-userController.updateUser = (req, res, next) => {
-  const { password } = req.body;
-  //extract id from jwt
-  //use id to update user password
-  let id;
+// userController.updateUser = (req, res, next) => {
+//   const { password } = req.body;
+//   //extract id from jwt
+//   //use id to update user password
+//   let id;
 
-  const query = `UPDATE users SET password=$1, WHERE id=$2 RETURNING *`;
+//   const query = `UPDATE users SET password=$1, WHERE id=$2 RETURNING *`;
 
-  db.query(query, [password, id])
-    .then((data) => {
-      return next();
-    })
-    .catch((err) => {
-      return next({
-        log: 'error in userController.updateUsers' + err,
-        status: 300,
-      });
-    });
-};
+//   db.query(query, [password, id])
+//     .then((data) => {
+//       return next();
+//     })
+//     .catch((err) => {
+//       return next({
+//         log: 'error in userController.updateUsers' + err,
+//         status: 300,
+//       });
+//     });
+// };
 
 module.exports = userController;

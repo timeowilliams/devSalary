@@ -13,19 +13,14 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/build', express.static(path.resolve(__dirname, '../build')));
 
-// cache
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
 });
 
-// users/authenticate - should be first to set tokens when necessary
-
-//route to auth new users
+//routes
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
-// states
 app.use('/states', statesRouter);
-// applications
 app.use('/applications', applicationsRouter);
 
 // Global error handler

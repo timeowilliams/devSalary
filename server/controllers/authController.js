@@ -41,7 +41,7 @@ authController.login = (req, res, next) => {
       bcrypt.compare(password, data.rows[0].password).then((result) => {
         if (result) {
           const user = {
-            username: data.rows[0].username,
+            email: data.rows[0].email,
             id: data.rows[0].id,
           };
 
@@ -59,6 +59,40 @@ authController.login = (req, res, next) => {
     .catch((error) => {
       return next(error);
     });
+};
+authController.addJWT = (req, res, next) => {
+  const { email } = req.body;
+  const { id } = res.locals.user;
+  jwt.sign({ email, id }, jwtSecret, (err, token) => {
+    if (err) {
+      return res.status(400).json('error creating jwt');
+    }
+    // Store jwt in res.cookies
+    res.cookie('jwt', token, { httpOnly: true });
+    return next();
+  });
+};
+
+authController.verifyUser = (req, res, next) => {
+  const token = req.cookies.jwt;
+  console.log('IN VERIFY', token);
+  if (!token) {
+    return res.json();
+  }
+
+  // Verify Token
+  jwt.verify(token, jwtSecret, (err, decoded) => {
+    if (!decoded) return res.json();
+    const { email, id } = decoded;
+    res.locals.user = { email, id };
+
+    return next();
+  });
+};
+
+authController.logout = (req, res, next) => {
+  res.cookie('jwt', null);
+  return next();
 };
 
 module.exports = authController;
