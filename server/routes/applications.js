@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const applicationsController = require('../controllers/applicationsController');
+
 // import authController
 
 router.get(
@@ -32,6 +33,7 @@ router.get(
     return res.status(200).json();
   }
 );
+
 // postApplications
 router.post(
   '/',

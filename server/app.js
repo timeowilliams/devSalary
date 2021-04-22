@@ -11,7 +11,8 @@ app.disable('x-powered-by');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.urlencoded({ extended: true }));
+
+
 
 app.use('/build', express.static(path.resolve(__dirname, '../build')));
 

@@ -3,6 +3,7 @@ const db = require('../model/dbModel');
 const applicationsController = {};
 
 applicationsController.getApplications = (req, res, next) => {
+
   // change this for production
   const users_id = res.locals.users_id;
   const states_id = req.body.states_id;
@@ -11,6 +12,7 @@ applicationsController.getApplications = (req, res, next) => {
   const query = `SELECT * FROM applications WHERE users_id=$1 AND states_id=$2`;
 
   db.query(query, [users_id, states_id])
+
     .then((data) => {
       res.locals.applications = data.rows;
       return next();
@@ -22,6 +24,7 @@ applicationsController.getApplications = (req, res, next) => {
       });
     });
 };
+
 
 applicationsController.postApplication = (req, res, next) => {
   console.log('postApp: line 24');
