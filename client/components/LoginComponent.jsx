@@ -18,13 +18,20 @@ class LoginComponent extends React.Component {
    this.userInfo = this.userInfo.bind(this);
    this.passwordInfo = this.passwordInfo.bind(this);
    this.validateLogin = this.validateLogin.bind(this);
+   this.forgetPassword = this.forgetPassword.bind(this);
+   this.signup = this.signup.bind(this);
   }
   validateLogin(e){
     e.preventDefault();
     console.log('Username is', this.state.username, 'Password is', this.state.password)
     //return this.state.username.length > 0 && this.state.password.length > 0 ? console.log('successfully logged in!'): console.log('Invalid')
   }
-
+  forgetPassword(){
+    console.log('I forgot password.')
+  }
+  signup(){
+    console.log('Sign up fired!')
+  }
  userInfo (event){
     this.setState({username: event.target.value});
   }
@@ -45,7 +52,9 @@ class LoginComponent extends React.Component {
         placeholder='Password'
         onChange={this.passwordInfo}
       /><br></br>
-      <button onClick = {this.validateLogin}>Log In</button>
+      <button className = 'login' onClick = {this.validateLogin}>Log In</button>
+      <button className = 'signup' onClick = {this.signup}>Sign up</button><br></br>
+      <a href ={this.forgetPassword}>forgot password?</a>
       </form>
     );
   }
