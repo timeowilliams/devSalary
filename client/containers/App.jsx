@@ -16,13 +16,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {/* <center> <h3>Democratizing software developer salary info so you don't have too</h3></center>
-        <LoginComponent/> */}
         <HomeComponent />
         <div className='datamap-outer-conainer'>
-        {/* <DataMap 
+        <DataMap 
         regionData={this.props.regionData} 
-        /> */}
+        />
         <div className = 'data'></div>
       </div>
       </div>
