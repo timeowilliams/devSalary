@@ -1,6 +1,5 @@
 import { Link, withRouter } from 'react-router-dom';
 import React,{Component, useState } from "react";
-
 //Login Component should have two buttons:
 
 //Create Account

@@ -15,7 +15,8 @@ module.exports = {
       {
         test: /\.s*css$/,
         loaders: ["style", "css", "sass"]
-      }
+      },{
+        test: /\.(jpe?g|png|gif|svg)$/i, loader: "file-loader?name=/public/assets/[name].[ext]"},
     ]
   },
   resolve: {
